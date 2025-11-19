@@ -3,7 +3,9 @@ const express = require('express');
 const cors = require('cors');
 
 const authRoutes = require('./routes/auth');
-const users = require('./routes/users');
+const usersRoutes = require('./routes/users');
+const workoutRoutes = require('./routes/workouts');
+const friendRoutes = require('./routes/friends');
 
 const app = express();
 app.use(cors());
@@ -11,7 +13,9 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/users', users);
+app.use('/api/users', usersRoutes);
+app.use('/api/workouts', workoutRoutes);
+app.use('/api/friends', friendRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

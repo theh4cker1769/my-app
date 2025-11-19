@@ -1,72 +1,61 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const pool = require('../db');
+const User = require('../models/User');
 
-// Generate JWT Token
-const generateToken = (userId) => {
-    return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE
-    });
-};
-
-// Signup Controller
+// Signup
 exports.signup = async (req, res) => {
     try {
-        const { 
-            full_name, 
-            email, 
-            password, 
-            phone, 
-            date_of_birth, 
-            gender,
-            height,
-            weight,
-            fitness_goal,
-            membership_type 
-        } = req.body;
+        const { full_name, email, password, phone } = req.body;
 
-        // Validate required fields
+        // Validation
         if (!full_name || !email || !password) {
             return res.status(400).json({ 
                 success: false, 
-                message: 'Please provide name, email and password' 
+                message: 'Please provide all required fields' 
             });
         }
 
         // Check if user already exists
-        const [existingUser] = await pool.query(
-            'SELECT id FROM users WHERE email = ?', 
-            [email]
-        );
-
-        if (existingUser.length > 0) {
+        const existingUser = await User.findByEmail(email);
+        if (existingUser) {
             return res.status(400).json({ 
                 success: false, 
-                message: 'Email already registered' 
+                message: 'User already exists with this email' 
             });
         }
 
         // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Insert new user
-        const [result] = await pool.query(
-            `INSERT INTO users (full_name, email, password, phone, date_of_birth, gender, height, weight, fitness_goal, membership_type) 
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [full_name, email, hashedPassword, phone || null, date_of_birth || null, gender || null, height || null, weight || null, fitness_goal || null, membership_type || 'basic']
+        // Create user
+        const userId = await User.create({
+            full_name,
+            email,
+            password: hashedPassword,
+            phone
+        });
+
+        // Get created user
+        const user = await User.findById(userId);
+
+        // Generate JWT token
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.JWT_SECRET || 'your-secret-key',
+            { expiresIn: '30d' }
         );
-
-        // Generate token
-        const token = generateToken(result.insertId);
 
         res.status(201).json({
             success: true,
-            message: 'User registered successfully',
-            token,
-            user: {
-                id: result.insertId,
-                full_name,
-                email
+            data: {
+                token,
+                user: {
+                    id: user.id,
+                    full_name: user.full_name,
+                    email: user.email,
+                    phone: user.phone
+                }
             }
         });
 
@@ -74,17 +63,17 @@ exports.signup = async (req, res) => {
         console.error('Signup error:', error);
         res.status(500).json({ 
             success: false, 
-            message: 'Server error during registration' 
+            message: 'Server error' 
         });
     }
 };
 
-// Login Controller
+// Login
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Validate input
+        // Validation
         if (!email || !password) {
             return res.status(400).json({ 
                 success: false, 
@@ -92,32 +81,17 @@ exports.login = async (req, res) => {
             });
         }
 
-        // Find user
-        const [users] = await pool.query(
-            'SELECT * FROM users WHERE email = ?', 
-            [email]
-        );
-
-        if (users.length === 0) {
+        // Check if user exists
+        const user = await User.findByEmail(email);
+        if (!user) {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid credentials' 
             });
         }
 
-        const user = users[0];
-
-        // Check if user is active
-        if (!user.is_active) {
-            return res.status(403).json({ 
-                success: false, 
-                message: 'Account is deactivated' 
-            });
-        }
-
-        // Verify password
+        // Check password
         const isPasswordValid = await bcrypt.compare(password, user.password);
-
         if (!isPasswordValid) {
             return res.status(401).json({ 
                 success: false, 
@@ -125,18 +99,26 @@ exports.login = async (req, res) => {
             });
         }
 
-        // Generate token
-        const token = generateToken(user.id);
+        // Generate JWT token
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.JWT_SECRET || 'your-secret-key',
+            { expiresIn: '30d' }
+        );
 
-        res.status(200).json({
+        res.json({
             success: true,
-            message: 'Login successful',
-            token,
-            user: {
-                id: user.id,
-                full_name: user.full_name,
-                email: user.email,
-                membership_type: user.membership_type
+            data: {
+                token,
+                user: {
+                    id: user.id,
+                    full_name: user.full_name,
+                    email: user.email,
+                    phone: user.phone,
+                    profile_picture: user.profile_picture,
+                    bio: user.bio,
+                    fitness_level: user.fitness_level
+                }
             }
         });
 
@@ -144,7 +126,7 @@ exports.login = async (req, res) => {
         console.error('Login error:', error);
         res.status(500).json({ 
             success: false, 
-            message: 'Server error during login' 
+            message: 'Server error' 
         });
     }
 };

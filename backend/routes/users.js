@@ -1,15 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db');
+const { protect } = require('../middlewares/auth');
+const {
+    getUserStats,
+    getWeeklySummary,
+    updateProfile,
+    getUserProfile
+} = require('../controllers/userController');
 
-router.get('/', async (req, res) => {
-    try {
-        const [rows] = await pool.query('SELECT id, full_name, email FROM users LIMIT 50');
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }   
-});
+// All routes require authentication
+router.use(protect);
+
+router.get('/stats', getUserStats);
+router.get('/weekly-summary', getWeeklySummary);
+router.put('/profile', updateProfile);
+router.get('/profile/:id', getUserProfile);
 
 module.exports = router;
