@@ -9,15 +9,17 @@ const {
     getTodayWorkout,
     getFriendsFeed,
     addReaction,
-    addComment
+    addComment,
+    quickLogWorkout
 } = require('../controllers/workoutController');
 
 router.use(protect); // All routes require authentication
 
 router.post('/', createWorkout);
+router.post('/quick-log', quickLogWorkout);
 router.get('/my-workouts', getMyWorkouts);
 router.get('/today', getTodayWorkout);
-router.get('/feed', getFriendsFeed);
+router.get('/friends-feed', getFriendsFeed);
 router.get('/:workout_id', getWorkoutDetails);
 router.delete('/:workout_id', deleteWorkout);
 router.post('/:workout_id/reaction', addReaction);

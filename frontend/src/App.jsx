@@ -4,6 +4,8 @@ import Signup from './auth/Signup';
 import { AuthProvider } from './auth/AuthContext';
 import Dashboard from './pages/Dashboard';
 import MyWorkouts from './pages/MyWorkouts';
+import Friends from './pages/Friends';
+import Groups from './pages/Groups';
 import './App.css';
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/my-workouts" element={<MyWorkouts />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/groups" element={<Groups />} />
         </Routes>
       </Router>
     </AuthProvider>

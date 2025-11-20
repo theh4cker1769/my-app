@@ -6,6 +6,7 @@ const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
 const workoutRoutes = require('./routes/workouts');
 const friendRoutes = require('./routes/friends');
+const groupRoutes = require('./routes/groups');
 
 const app = express();
 app.use(cors());
@@ -16,6 +17,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/friends', friendRoutes);
+app.use('/api/groups', groupRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

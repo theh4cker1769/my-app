@@ -54,7 +54,8 @@ const apiCall = async (endpoint, options = {}) => {
             };
         }
 
-        return { success: true, data };
+        // Return the backend response directly (already has {success: true, data: ...})
+        return data;
     } catch (error) {
         console.error('API Error:', error);
         return handleError(error);

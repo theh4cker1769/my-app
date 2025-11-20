@@ -4,28 +4,34 @@ import { AuthContext } from '../auth/AuthContext';
 import { userAPI, workoutAPI } from '../api/apiServices';
 import Layout from '../layout/Layout';
 import Header from '../layout/Header';
+import QuickLogWorkout from '../components/QuickLogWorkout';
 import '../styles/dashboard.css';
 
 const Dashboard = () => {
-    const { user, token } = useContext(AuthContext);
+    const { user, token, initializing } = useContext(AuthContext);
     const navigate = useNavigate();
     const [stats, setStats] = useState(null);
     const [todayWorkout, setTodayWorkout] = useState([]);
     const [friendsActivity, setFriendsActivity] = useState([]);
     const [weeklySummary, setWeeklySummary] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showQuickLog, setShowQuickLog] = useState(false);
 
     useEffect(() => {
-        console.log('Dashboard - user:', user); // Debug
-        console.log('Dashboard - token:', token); // Debug
-        
+        // Wait for auth to initialize before checking authentication
+        if (initializing) return;
+
         if (!user || !token) {
-            console.log('No user or token, redirecting to login...'); // Debug
             navigate('/login');
         } else {
             fetchDashboardData();
         }
-    }, [user, token, navigate]);
+    }, [user, token, initializing, navigate]);
+
+    const handleWorkoutLogged = (data) => {
+        fetchDashboardData();
+        alert(`${data.workout_type} workout logged! 🔥\nStreak: ${data.current_streak} days`);
+    };
 
     const fetchDashboardData = async () => {
         setLoading(true);
@@ -41,17 +47,17 @@ const Dashboard = () => {
                 const statsData = statsRes.data?.data || statsRes.data;
                 setStats(statsData);
             }
-            
+
             if (todayRes && todayRes.success) {
                 const todayData = todayRes.data?.data || todayRes.data;
                 setTodayWorkout(Array.isArray(todayData) ? todayData : []);
             }
-            
+
             if (friendsRes && friendsRes.success) {
                 const friendsData = friendsRes.data?.data || friendsRes.data;
                 setFriendsActivity(Array.isArray(friendsData) ? friendsData : []);
             }
-            
+
             if (weeklyRes && weeklyRes.success) {
                 const weeklyData = weeklyRes.data?.data || weeklyRes.data;
                 setWeeklySummary(Array.isArray(weeklyData) ? weeklyData : []);
@@ -64,7 +70,7 @@ const Dashboard = () => {
         }
     };
 
-    if (!user || !token || loading) {
+    if (initializing || !user || !token || loading) {
         return (
             <div style={{
                 display: 'flex',
@@ -112,9 +118,9 @@ const Dashboard = () => {
 
     return (
         <Layout>
-            <Header 
+            <Header
                 actionButton={
-                    <button className="btn-add-workout">
+                    <button className="btn-add-workout" onClick={() => setShowQuickLog(true)}>
                         ➕ Log Workout
                     </button>
                 }
@@ -226,6 +232,13 @@ const Dashboard = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Quick Log Modal */}
+            <QuickLogWorkout
+                isOpen={showQuickLog}
+                onClose={() => setShowQuickLog(false)}
+                onSuccess={handleWorkoutLogged}
+            />
         </Layout>
     );
 };

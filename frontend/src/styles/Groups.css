@@ -1,0 +1,378 @@
+.groups-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.groups-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.btn-create-group {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-create-group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.groups-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+/* Groups Sidebar */
+.groups-sidebar {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.groups-sidebar h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.groups-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.group-card {
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.group-card:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.group-card.active {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+}
+
+.group-card h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.group-meta {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Group Details */
+.group-details {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.group-info {
+    margin-bottom: 2rem;
+}
+
+.group-info h2 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.group-description {
+    color: #666;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.week-info {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #667eea;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Members Leaderboard */
+.members-leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.member-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.member-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.member-card.rank-1 {
+    border-color: #FFD700;
+    background: linear-gradient(135deg, #FFD70015 0%, #FFA50015 100%);
+}
+
+.member-card.rank-2 {
+    border-color: #C0C0C0;
+    background: linear-gradient(135deg, #C0C0C015 0%, #A8A8A815 100%);
+}
+
+.member-card.rank-3 {
+    border-color: #CD7F32;
+    background: linear-gradient(135deg, #CD7F3215 0%, #B8733215 100%);
+}
+
+.member-rank {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.rank-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.member-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.member-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.member-details h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.125rem;
+}
+
+.member-stats {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.workout-count {
+    font-weight: 600;
+}
+
+/* Motivation Badges */
+.motivation-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    min-width: 150px;
+    text-align: center;
+}
+
+.motivation-emoji {
+    font-size: 2rem;
+}
+
+.motivation-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.motivation-badge.fire {
+    background: linear-gradient(135deg, #FF6B6B15 0%, #FF000015 100%);
+    border: 2px solid #FF6B6B;
+    color: #FF6B6B;
+}
+
+.motivation-badge.strong {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+.motivation-badge.good {
+    background: linear-gradient(135deg, #51CF6615 0%, #43A04715 100%);
+    border: 2px solid #51CF66;
+    color: #51CF66;
+}
+
+.motivation-badge.sleepy {
+    background: linear-gradient(135deg, #95959515 0%, #66666615 100%);
+    border: 2px solid #959595;
+    color: #666;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    margin: 0 0 1.5rem 0;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.btn-cancel {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    border-color: #999;
+    background: #f5f5f5;
+}
+
+.btn-submit {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #999;
+}
+
+.empty-hint {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Loading */
+.loading {
+    .groups-sidebar {
+        order: 2;
+    }
+
+    .group-details {
+        order: 1;
+    }
+
+    .member-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .member-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .motivation-badge {
+        width: 100%;
+    }
+}

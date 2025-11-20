@@ -10,9 +10,9 @@ exports.createWorkout = async (req, res) => {
 
         // Validation
         if (!workout_name) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'Workout name is required' 
+            return res.status(400).json({
+                success: false,
+                message: 'Workout name is required'
             });
         }
 
@@ -61,9 +61,68 @@ exports.createWorkout = async (req, res) => {
 
     } catch (error) {
         console.error('Create workout error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
+        });
+    }
+};
+
+
+// Quick log workout (simplified)
+exports.quickLogWorkout = async (req, res) => {
+    try {
+        const user_id = req.user.id;
+        const { workout_type, notes } = req.body;
+
+        // Validation
+        const validTypes = ['Chest', 'Back', 'Shoulders', 'Legs', 'Arms', 'Core', 'Cardio', 'Full Body'];
+        if (!workout_type || !validTypes.includes(workout_type)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Valid workout type is required'
+            });
+        }
+
+        // Auto-generate workout name from type
+        const workout_name = `${workout_type} Workout`;
+
+        // Create workout with minimal data
+        const workoutId = await Workout.create({
+            user_id,
+            workout_name,
+            workout_type,
+            description: null,
+            duration: null,
+            calories_burned: null,
+            workout_date: new Date().toISOString().split('T')[0],
+            workout_time: new Date().toTimeString().split(' ')[0],
+            notes: notes || null,
+            is_public: true
+        });
+
+        // Update user stats and streak
+        await User.incrementWorkouts(user_id, 10);
+
+        // Get updated stats to return
+        const stats = await User.getStats(user_id);
+
+        res.status(201).json({
+            success: true,
+            data: {
+                id: workoutId,
+                workout_type,
+                current_streak: stats.current_streak,
+                total_workouts: stats.total_workouts
+            },
+            message: `${workout_type} workout logged! 🔥`
+        });
+
+    } catch (error) {
+        console.error('Quick log workout error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -84,9 +143,9 @@ exports.getMyWorkouts = async (req, res) => {
 
     } catch (error) {
         console.error('Get my workouts error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -98,9 +157,9 @@ exports.getWorkoutDetails = async (req, res) => {
         const workout = await Workout.getById(workout_id);
 
         if (!workout) {
-            return res.status(404).json({ 
-                success: false, 
-                message: 'Workout not found' 
+            return res.status(404).json({
+                success: false,
+                message: 'Workout not found'
             });
         }
 
@@ -111,9 +170,9 @@ exports.getWorkoutDetails = async (req, res) => {
 
     } catch (error) {
         console.error('Get workout details error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -127,9 +186,9 @@ exports.deleteWorkout = async (req, res) => {
         const success = await Workout.delete(workout_id, user_id);
 
         if (!success) {
-            return res.status(404).json({ 
-                success: false, 
-                message: 'Workout not found or unauthorized' 
+            return res.status(404).json({
+                success: false,
+                message: 'Workout not found or unauthorized'
             });
         }
 
@@ -140,9 +199,9 @@ exports.deleteWorkout = async (req, res) => {
 
     } catch (error) {
         console.error('Delete workout error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -160,9 +219,9 @@ exports.getTodayWorkout = async (req, res) => {
 
     } catch (error) {
         console.error('Get today workout error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -182,9 +241,9 @@ exports.getFriendsFeed = async (req, res) => {
 
     } catch (error) {
         console.error('Get friends feed error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -198,9 +257,9 @@ exports.addReaction = async (req, res) => {
 
         const validReactions = ['like', 'fire', 'strong', 'clap'];
         if (!validReactions.includes(reaction_type)) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'Invalid reaction type' 
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid reaction type'
             });
         }
 
@@ -231,9 +290,9 @@ exports.addReaction = async (req, res) => {
 
     } catch (error) {
         console.error('Add reaction error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -246,9 +305,9 @@ exports.addComment = async (req, res) => {
         const { comment } = req.body;
 
         if (!comment || comment.trim() === '') {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'Comment cannot be empty' 
+            return res.status(400).json({
+                success: false,
+                message: 'Comment cannot be empty'
             });
         }
 
@@ -264,9 +323,9 @@ exports.addComment = async (req, res) => {
 
     } catch (error) {
         console.error('Add comment error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
