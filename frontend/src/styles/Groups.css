@@ -354,6 +354,17 @@
 
 /* Loading */
 .loading {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+    .groups-content {
+        grid-template-columns: 1fr;
+    }
+
     .groups-sidebar {
         order: 2;
     }
@@ -361,18 +372,323 @@
     .group-details {
         order: 1;
     }
+}
+
+/* Small mobile - 480px */
+@media (max-width: 480px) {
+    .groups-container {
+        padding: 1rem;
+    }
+
+    .groups-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-create-group {
+        padding: 0.65rem 1.25rem;
+        font-size: 14px;
+        align-self: stretch;
+    }
+
+    .groups-content {
+        gap: 1.5rem;
+    }
+
+    .groups-sidebar {
+        padding: 1.25rem;
+        border-radius: 10px;
+    }
+
+    .groups-sidebar h3 {
+        font-size: 18px;
+    }
+
+    .groups-list {
+        gap: 0.65rem;
+    }
+
+    .group-card {
+        padding: 0.875rem;
+    }
+
+    .group-card h4 {
+        font-size: 15px;
+    }
+
+    .group-meta {
+        font-size: 13px;
+    }
+
+    .group-details {
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .group-info {
+        margin-bottom: 1.5rem;
+    }
+
+    .group-info h2 {
+        font-size: 22px;
+    }
+
+    .group-description {
+        font-size: 14px;
+    }
+
+    .week-info {
+        padding: 0.4rem 0.875rem;
+        font-size: 13px;
+    }
+
+    .members-leaderboard {
+        gap: 0.875rem;
+    }
 
     .member-card {
+        padding: 1.25rem;
         flex-direction: column;
         text-align: center;
+        gap: 0.875rem;
+    }
+
+    .member-rank {
+        font-size: 1.75rem;
+    }
+
+    .rank-badge {
+        width: 44px;
+        height: 44px;
+    }
+
+    .member-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .member-avatar {
+        width: 52px;
+        height: 52px;
+        font-size: 1.25rem;
+    }
+
+    .member-details h3 {
+        font-size: 16px;
     }
 
     .member-stats {
         flex-direction: column;
         gap: 0.5rem;
+        font-size: 13px;
     }
 
     .motivation-badge {
         width: 100%;
+        min-width: unset;
+        padding: 0.65rem 0.875rem;
+    }
+
+    .motivation-emoji {
+        font-size: 1.75rem;
+    }
+
+    .motivation-text {
+        font-size: 12px;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.65rem;
+        font-size: 14px;
+    }
+
+    .modal-actions {
+        gap: 0.75rem;
+    }
+
+    .btn-cancel,
+    .btn-submit {
+        padding: 0.65rem 1.25rem;
+        font-size: 14px;
+    }
+}
+
+/* Extra small mobile - 360px */
+@media (max-width: 360px) {
+    .groups-container {
+        padding: 0.75rem;
+    }
+
+    .groups-header {
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .btn-create-group {
+        padding: 0.6rem 1rem;
+        font-size: 13px;
+    }
+
+    .groups-content {
+        gap: 1.25rem;
+    }
+
+    .groups-sidebar {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .groups-sidebar h3 {
+        font-size: 16px;
+    }
+
+    .groups-list {
+        gap: 0.6rem;
+    }
+
+    .group-card {
+        padding: 0.75rem;
+        border-radius: 6px;
+    }
+
+    .group-card h4 {
+        font-size: 14px;
+    }
+
+    .group-meta {
+        font-size: 12px;
+    }
+
+    .group-details {
+        padding: 1.25rem;
+        border-radius: 8px;
+    }
+
+    .group-info {
+        margin-bottom: 1.25rem;
+    }
+
+    .group-info h2 {
+        font-size: 20px;
+    }
+
+    .group-description {
+        font-size: 13px;
+    }
+
+    .week-info {
+        padding: 0.35rem 0.75rem;
+        font-size: 12px;
+    }
+
+    .members-leaderboard {
+        gap: 0.75rem;
+    }
+
+    .member-card {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .member-rank {
+        font-size: 1.5rem;
+    }
+
+    .rank-badge {
+        width: 40px;
+        height: 40px;
+    }
+
+    .member-info {
+        gap: 0.65rem;
+    }
+
+    .member-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 1.125rem;
+    }
+
+    .member-details h3 {
+        font-size: 15px;
+    }
+
+    .member-stats {
+        gap: 0.4rem;
+        font-size: 12px;
+    }
+
+    .motivation-badge {
+        padding: 0.6rem 0.75rem;
+    }
+
+    .motivation-emoji {
+        font-size: 1.5rem;
+    }
+
+    .motivation-text {
+        font-size: 11px;
+    }
+
+    .modal-content {
+        padding: 1.25rem;
+        border-radius: 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.6rem;
+        font-size: 13px;
+    }
+
+    .modal-actions {
+        gap: 0.65rem;
+    }
+
+    .btn-cancel,
+    .btn-submit {
+        padding: 0.6rem 1rem;
+        font-size: 13px;
+    }
+
+    .empty-state {
+        padding: 2rem 0.75rem;
+    }
+
+    .empty-hint {
+        font-size: 13px;
     }
 }

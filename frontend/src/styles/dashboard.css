@@ -299,23 +299,284 @@
     font-size: 12px;
 }
 
-/* Responsive */
+/* Responsive - Tablet */
 @media (max-width: 768px) {
     .sidebar {
         width: 70px;
     }
-    
+
     .main-content {
         margin-left: 70px;
+        padding: 20px;
     }
-    
+
     .nav-item span:not(.nav-icon),
     .logout-btn span:not(.nav-icon) {
         display: none;
     }
-    
+
     .logo {
         font-size: 30px;
         text-align: center;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header h1 {
+        font-size: 26px;
+    }
+}
+
+/* Small mobile - 480px */
+@media (max-width: 480px) {
+    .main-content {
+        margin-left: 60px;
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar-header {
+        padding: 20px 10px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav-item {
+        padding: 12px 18px;
+        justify-content: center;
+    }
+
+    .logout-btn {
+        margin: 15px 10px;
+        padding: 12px;
+        justify-content: center;
+    }
+
+    .dashboard-header h1 {
+        font-size: 22px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .btn-add-workout {
+        padding: 10px 18px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .stats-grid {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .stat-card {
+        padding: 16px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .stat-icon {
+        font-size: 32px;
+    }
+
+    .stat-info h3 {
+        font-size: 22px;
+    }
+
+    .stat-info p {
+        font-size: 12px;
+    }
+
+    .content-grid {
+        gap: 15px;
+    }
+
+    .card-header {
+        padding: 15px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .card-header h2 {
+        font-size: 16px;
+    }
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .week-chart {
+        height: 150px;
+        padding: 15px 0;
+    }
+
+    .day-bar {
+        gap: 8px;
+    }
+
+    .bar {
+        width: 30px;
+    }
+
+    .day-label {
+        font-size: 11px;
+    }
+
+    .workout-item,
+    .activity-item {
+        padding: 12px;
+    }
+
+    .empty-state {
+        padding: 30px 15px;
+    }
+
+    .empty-icon {
+        font-size: 48px;
+    }
+
+    .btn-primary-small {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Extra small mobile - 360px */
+@media (max-width: 360px) {
+    .main-content {
+        margin-left: 50px;
+        padding: 12px;
+    }
+
+    .sidebar {
+        width: 50px;
+    }
+
+    .sidebar-header {
+        padding: 15px 5px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-item {
+        padding: 10px 12px;
+    }
+
+    .nav-icon {
+        font-size: 18px;
+    }
+
+    .logout-btn {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 20px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .btn-add-workout {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .stats-grid {
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 12px;
+        gap: 8px;
+        border-radius: 10px;
+    }
+
+    .stat-icon {
+        font-size: 28px;
+    }
+
+    .stat-info h3 {
+        font-size: 18px;
+    }
+
+    .stat-info p {
+        font-size: 11px;
+    }
+
+    .content-grid {
+        gap: 12px;
+    }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-header {
+        padding: 12px 15px;
+    }
+
+    .card-header h2 {
+        font-size: 15px;
+    }
+
+    .date {
+        font-size: 12px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .week-chart {
+        height: 120px;
+    }
+
+    .bar {
+        width: 25px;
+    }
+
+    .day-label {
+        font-size: 10px;
+    }
+
+    .workout-item h4,
+    .activity-item strong {
+        font-size: 14px;
+    }
+
+    .workout-item p,
+    .activity-item p {
+        font-size: 12px;
+    }
+
+    .activity-item small {
+        font-size: 11px;
     }
 }

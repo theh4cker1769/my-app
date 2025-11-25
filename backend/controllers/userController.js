@@ -14,9 +14,9 @@ exports.getUserStats = async (req, res) => {
 
     } catch (error) {
         console.error('Get user stats error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -47,9 +47,9 @@ exports.getWeeklySummary = async (req, res) => {
 
     } catch (error) {
         console.error('Get weekly summary error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -63,9 +63,9 @@ exports.updateProfile = async (req, res) => {
         const success = await User.updateProfile(user_id, updates);
 
         if (!success) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'No valid fields to update' 
+            return res.status(400).json({
+                success: false,
+                message: 'No valid fields to update'
             });
         }
 
@@ -80,9 +80,9 @@ exports.updateProfile = async (req, res) => {
 
     } catch (error) {
         console.error('Update profile error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };
@@ -94,9 +94,9 @@ exports.getUserProfile = async (req, res) => {
         const user = await User.findById(userId);
 
         if (!user) {
-            return res.status(404).json({ 
-                success: false, 
-                message: 'User not found' 
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
             });
         }
 
@@ -107,9 +107,47 @@ exports.getUserProfile = async (req, res) => {
 
     } catch (error) {
         console.error('Get user profile error:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Server error' 
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
+        });
+    }
+};
+
+// Get monthly activity for heatmap
+exports.getMonthlyActivity = async (req, res) => {
+    try {
+        const user_id = req.user.id;
+
+        // Get workout counts per day for the last 12 months
+        const [activity] = await pool.query(
+            `SELECT 
+                DATE(workout_date) as date,
+                COUNT(*) as workout_count
+             FROM workouts
+             WHERE user_id = ? 
+             AND workout_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+             GROUP BY DATE(workout_date)
+             ORDER BY date ASC`,
+            [user_id]
+        );
+
+        // Transform into a map for easy lookup
+        const activityMap = {};
+        activity.forEach(item => {
+            activityMap[item.date] = item.workout_count;
+        });
+
+        res.json({
+            success: true,
+            data: activityMap
+        });
+
+    } catch (error) {
+        console.error('Get monthly activity error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
         });
     }
 };

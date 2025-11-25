@@ -333,14 +333,37 @@
     color: #666;
 }
 
-/* Mobile Responsive */
+/* Responsive - Tablet */
 @media (max-width: 768px) {
+    .friends-container {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+
+    .friends-tabs {
+        overflow-x: auto;
+    }
+
+    .friends-tabs .tab {
+        white-space: nowrap;
+        padding: 10px 18px;
+        font-size: 15px;
+    }
+
     .leaderboard {
         grid-template-columns: 1fr;
     }
 
     .podium-card.rank-1 {
         transform: scale(1);
+    }
+
+    .leaderboard-section h2 {
+        font-size: 22px;
     }
 
     .friend-card,
@@ -358,12 +381,261 @@
     .request-actions button {
         flex: 1;
     }
+}
 
-    .friends-tabs {
-        overflow-x: auto;
+/* Small mobile -480px */
+@media (max-width: 480px) {
+    .friends-container {
+        padding: 12px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        margin-bottom: 20px;
     }
 
     .friends-tabs .tab {
-        white-space: nowrap;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .friends-tabs .badge {
+        padding: 1px 6px;
+        font-size: 11px;
+    }
+
+    .leaderboard-section {
+        margin-bottom: 30px;
+    }
+
+    .leaderboard-section h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .leaderboard {
+        gap: 15px;
+    }
+
+    .podium-card {
+        padding: 25px 16px;
+        border-radius: 12px;
+    }
+
+    .rank-badge {
+        font-size: 40px;
+    }
+
+    .podium-card .friend-name {
+        font-size: 16px;
+    }
+
+    .podium-card .streak-count {
+        font-size: 20px;
+    }
+
+    .friends-list,
+    .search-results {
+        gap: 12px;
+    }
+
+    .friend-card,
+    .request-card,
+    .search-result-card {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .friend-info {
+        gap: 12px;
+        width: 100%;
+    }
+
+    .friend-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .friend-details h3 {
+        font-size: 16px;
+    }
+
+    .friend-email,
+    .friend-stats {
+        font-size: 13px;
+    }
+
+    .btn-remove,
+    .btn-accept,
+    .btn-reject,
+    .btn-add {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .request-actions {
+        gap: 8px;
+    }
+
+    .status-badge {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .search-bar input {
+        padding: 14px 16px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    .empty-state {
+        padding: 50px 16px;
+    }
+
+    .empty-icon {
+        font-size: 54px;
+    }
+
+    .empty-state p {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        padding: 10px 26px;
+        font-size: 15px;
+    }
+}
+
+/* Extra small mobile - 360px */
+@media (max-width: 360px) {
+    .friends-container {
+        padding: 10px;
+    }
+
+    .page-title {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .friends-tabs {
+        gap: 6px;
+        margin-bottom: 20px;
+    }
+
+    .friends-tabs .tab {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .leaderboard-section h2 {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    .leaderboard {
+        gap: 12px;
+    }
+
+    .podium-card {
+        padding: 20px 14px;
+        border-radius: 10px;
+    }
+
+    .rank-badge {
+        font-size: 36px;
+    }
+
+    .podium-card .friend-name {
+        font-size: 15px;
+    }
+
+    .podium-card .streak-count {
+        font-size: 18px;
+    }
+
+    .friends-list,
+    .search-results {
+        gap: 10px;
+    }
+
+    .friend-card,
+    .request-card,
+    .search-result-card {
+        padding: 14px;
+        border-radius: 8px;
+    }
+
+    .friend-info {
+        gap: 10px;
+    }
+
+    .friend-avatar {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    .friend-details h3 {
+        font-size: 15px;
+    }
+
+    .friend-email,
+    .friend-stats {
+        font-size: 12px;
+    }
+
+    .btn-remove,
+    .btn-accept,
+    .btn-reject,
+    .btn-add {
+        padding: 7px 14px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+
+    .request-actions {
+        gap: 6px;
+    }
+
+    .status-badge {
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 16px;
+    }
+
+    .search-bar {
+        margin-bottom: 18px;
+    }
+
+    .search-bar input {
+        padding: 12px 14px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    .empty-state {
+        padding: 40px 12px;
+    }
+
+    .empty-icon {
+        font-size: 48px;
+    }
+
+    .empty-state p {
+        font-size: 15px;
+        margin-bottom: 16px;
+    }
+
+    .btn-primary {
+        padding: 9px 22px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .loading {
+        padding: 30px;
+        font-size: 16px;
     }
 }

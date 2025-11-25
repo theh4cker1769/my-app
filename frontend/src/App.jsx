@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import MyWorkouts from './pages/MyWorkouts';
 import Friends from './pages/Friends';
 import Groups from './pages/Groups';
+import Profile from './pages/Profile';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/my-workouts" element={<MyWorkouts />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/groups" element={<Groups />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </AuthProvider>

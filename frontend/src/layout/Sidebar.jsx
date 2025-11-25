@@ -13,7 +13,6 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         { id: 'workouts', icon: '🏋️', label: 'My Workouts', path: '/my-workouts' },
         { id: 'friends', icon: '👥', label: 'Friends', path: '/friends' },
         { id: 'groups', icon: '👫', label: 'Groups', path: '/groups' },
-        { id: 'leaderboard', icon: '🏆', label: 'Leaderboard', path: '/leaderboard' },
         { id: 'profile', icon: '⚙️', label: 'Profile', path: '/profile' }
     ];
 

@@ -10,6 +10,7 @@ export const authAPI = {
 export const userAPI = {
     getStats: () => apiConfig.get('/users/stats'),
     getWeeklySummary: () => apiConfig.get('/users/weekly-summary'),
+    getMonthlyActivity: () => apiConfig.get('/users/monthly-activity'),
     updateProfile: (userData) => apiConfig.put('/users/profile', userData),
     getUserProfile: (userId) => apiConfig.get(`/users/profile/${userId}`)
 };

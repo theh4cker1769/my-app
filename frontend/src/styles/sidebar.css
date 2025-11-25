@@ -75,18 +75,89 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* Responsive - Tablet */
 @media (max-width: 768px) {
     .sidebar {
         width: 70px;
     }
-    
+
     .nav-item span:not(.nav-icon),
     .logout-btn span:not(.nav-icon) {
         display: none;
     }
-    
+
     .logo {
         font-size: 30px;
         text-align: center;
+    }
+
+    .sidebar-header {
+        padding: 25px 15px;
+    }
+
+    .nav-item {
+        padding: 15px 20px;
+        justify-content: center;
+    }
+
+    .logout-btn {
+        margin: 20px 10px;
+        justify-content: center;
+    }
+}
+
+/* Small mobile - 480px */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar-header {
+        padding: 20px 10px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav-item {
+        padding: 12px 18px;
+    }
+
+    .nav-icon {
+        font-size: 18px;
+    }
+
+    .logout-btn {
+        margin: 15px 10px;
+        padding: 12px;
+    }
+}
+
+/* Extra small mobile - 360px */
+@media (max-width: 360px) {
+    .sidebar {
+        width: 50px;
+    }
+
+    .sidebar-header {
+        padding: 15px 5px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-item {
+        padding: 10px 12px;
+    }
+
+    .nav-icon {
+        font-size: 16px;
+    }
+
+    .logout-btn {
+        margin: 10px 5px;
+        padding: 10px;
     }
 }

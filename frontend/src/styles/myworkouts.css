@@ -17,8 +17,13 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .empty-workouts {
@@ -275,6 +280,7 @@
     font-style: italic;
 }
 
+/* Responsive - Tablet/Desktop */
 @media (max-width: 1024px) {
     .workouts-container {
         grid-template-columns: 1fr;
@@ -282,5 +288,249 @@
 
     .workout-details {
         position: relative;
+    }
+
+    .workouts-list {
+        max-height: none;
+    }
+}
+
+/* Small mobile - 480px */
+@media (max-width: 480px) {
+    .empty-workouts {
+        padding: 50px 15px;
+    }
+
+    .empty-icon {
+        font-size: 60px;
+    }
+
+    .empty-workouts h2 {
+        font-size: 22px;
+    }
+
+    .empty-workouts p {
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        padding: 12px 22px;
+        font-size: 14px;
+    }
+
+    .workouts-list {
+        border-radius: 12px;
+    }
+
+    .workouts-header {
+        padding: 15px 18px;
+    }
+
+    .workouts-header h3 {
+        font-size: 16px;
+    }
+
+    .workout-card {
+        padding: 16px 18px;
+    }
+
+    .workout-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .workout-card-header h4 {
+        font-size: 16px;
+    }
+
+    .workout-date {
+        font-size: 12px;
+    }
+
+    .workout-description {
+        font-size: 13px;
+    }
+
+    .workout-stats {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .stat {
+        font-size: 12px;
+    }
+
+    .workout-details {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .details-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    .details-header h3 {
+        font-size: 20px;
+    }
+
+    .btn-delete {
+        padding: 8px 16px;
+        font-size: 13px;
+        align-self: flex-end;
+    }
+
+    .details-info {
+        padding: 16px;
+    }
+
+    .info-item {
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 0;
+    }
+
+    .info-label,
+    .info-value {
+        font-size: 14px;
+    }
+
+    .details-section h4 {
+        font-size: 16px;
+    }
+
+    .details-section p {
+        font-size: 14px;
+    }
+
+    .exercise-item {
+        padding: 14px;
+    }
+
+    .exercise-name {
+        font-size: 15px;
+    }
+
+    .exercise-details {
+        font-size: 13px;
+    }
+
+    .exercise-notes {
+        font-size: 13px;
+    }
+}
+
+/* Extra small mobile - 360px */
+@media (max-width: 360px) {
+    .empty-workouts {
+        padding: 40px 12px;
+        border-radius: 12px;
+    }
+
+    .empty-icon {
+        font-size: 50px;
+    }
+
+    .empty-workouts h2 {
+        font-size: 20px;
+    }
+
+    .empty-workouts p {
+        font-size: 13px;
+    }
+
+    .btn-primary {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+
+    .workouts-list {
+        border-radius: 10px;
+    }
+
+    .workouts-header {
+        padding: 12px 15px;
+    }
+
+    .workouts-header h3 {
+        font-size: 15px;
+    }
+
+    .workout-card {
+        padding: 14px 15px;
+    }
+
+    .workout-card-header h4 {
+        font-size: 15px;
+    }
+
+    .workout-date {
+        font-size: 11px;
+    }
+
+    .workout-description {
+        font-size: 12px;
+    }
+
+    .stat {
+        font-size: 11px;
+    }
+
+    .workout-details {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .details-header h3 {
+        font-size: 18px;
+    }
+
+    .btn-delete {
+        padding: 7px 14px;
+        font-size: 12px;
+    }
+
+    .details-info {
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .info-label,
+    .info-value {
+        font-size: 13px;
+    }
+
+    .details-section h4 {
+        font-size: 15px;
+    }
+
+    .details-section p {
+        font-size: 13px;
+    }
+
+    .exercise-item {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .exercise-name {
+        font-size: 14px;
+    }
+
+    .exercise-details {
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    .exercise-details span {
+        padding: 3px 8px;
+    }
+
+    .exercise-notes {
+        font-size: 12px;
     }
 }
